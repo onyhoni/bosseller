@@ -100,8 +100,8 @@
                                     <td class="px-6 py-4">{{ $package->color }}</td>
                                     <td class="px-6 py-4">{{ $package->created_at->format('d M , Y H:s') }}</td>
                                     <td class="px-6 py-4">
-                                        <a target="_blank" href="{{ asset($package->picture) }}">
-                                            <img src="{{ asset($package->picture) }}" alt="Picture"
+                                        <a target="_blank" href="{{ asset('storage/' . $package->picture) }}">
+                                            <img src="{{ asset('storage/' . $package->picture) }}" alt="Picture"
                                                 class="w-40 h-30 rounded-xl">
                                         </a>
 

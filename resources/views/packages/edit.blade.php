@@ -110,7 +110,8 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <img class="img-preview lg:w-1/2 w-full h-60" src="{{ asset($packages->picture) }}">
+                                    <img class="img-preview lg:w-1/2 w-full h-60"
+                                        src="{{ asset('storage/' . $packages->picture) }}">
                                 </div>
                             </div>
 

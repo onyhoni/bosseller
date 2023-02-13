@@ -46,7 +46,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <img class="img-preview w-full h-60" src="{{ asset($user->picture) }}" alt="Picture">
+                    <img class="img-preview w-full h-60" src="{{ asset('storage/' . $user->picture) }}" alt="Picture">
                 </div>
 
 

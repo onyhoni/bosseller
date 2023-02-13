@@ -30,7 +30,7 @@
                     </div>
                 </div>
                 <div class="pt-8 md:px-8 flex justify-center">
-                    <img src="{{ asset($package->picture) }}" class="h-52 w-80 rounded-xl" alt="" />
+                    <img src="{{ asset('storage/' . $package->picture) }}" class="h-52 w-80 rounded-xl" alt="" />
                 </div>
             </div>
             <div class="px-4 mt-10">
