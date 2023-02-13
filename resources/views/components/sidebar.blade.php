@@ -1,6 +1,6 @@
 <div class="hidden lg:col-span-2 lg:flex min-h-screen flex-col items-center bg-white p-3 font-medium">
     <h1 class="mb-16 text-2xl">Bos<span class="text-reds">seller</span></h1>
-    <img src="{{ asset(auth()->user()->picture) }}" alt="" class="mb-3 h-24 w-24 rounded-full" />
+    <img src="{{ asset('storage/' . auth()->user()->picture) }}" alt="" class="mb-3 h-24 w-24 rounded-full" />
     <p class="text-medium mb-1 text-lg">{{ auth()->user()->name }}</p>
     <p class="text-abu mb-20 text-xs">Warehouse Section</p>
     <div class="text-center">
