@@ -83,7 +83,7 @@
                                     <td class="px-6 py-4">{{ $transaction->send }}</td>
                                     <td class="px-6 py-4">{{ $transaction->consignee }}</td>
                                     <td class="px-6 py-4">{{ $transaction->airwaybill }}</td>
-                                    <td class="px-6 py-4">{{ $transaction->created_at->format('d M , Y H:m') }}</td>
+                                    <td class="px-6 py-4">{{ $transaction->created_at->format('d M , Y H:i') }}</td>
                                 </tr>
                             @endforeach
                         </tbody>

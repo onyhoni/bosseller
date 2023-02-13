@@ -94,7 +94,7 @@
                                     <td class="px-6 py-4">{{ $user->name }}</td>
                                     <td class="px-6 py-4">{{ $user->email }}</td>
                                     <td class="px-6 py-4">{{ $user->username }}</td>
-                                    <td class="px-6 py-4">{{ $user->created_at->format('d M , Y H:m') }}</td>
+                                    <td class="px-6 py-4">{{ $user->created_at->format('d M , Y H:i') }}</td>
                                     <td class="px-6 py-4">
                                         <a target="_blank" href="{{ asset('storage/' . $user->picture) }}">
                                             <img src="{{ asset('storage/' . $user->picture) }}" alt="Picture"
