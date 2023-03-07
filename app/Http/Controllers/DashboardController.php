@@ -22,13 +22,13 @@ class DashboardController extends Controller
             'outTrans' => Transaction::where("type", 'out')->pluck('qty')->sum(),
             'Transaction' => [
                 'created' => Transaction::select(DB::raw("DATE(created_at) as created"))
-                    ->whereBetween('created', [date('Y-m-d', strtotime('-6 days')), date('Y-m-d', strtotime('+1 days'))])
+                    ->whereBetween('created_at', [date('Y-m-d', strtotime('-6 days')), date('Y-m-d', strtotime('+1 days'))])
                     ->groupBy('created')->orderBy('created', 'asc')->pluck('created'),
                 'qty_in' => Transaction::select(DB::raw("DATE(created_at) as created , SUM(IF( TYPE = 'in', qty, 0)) AS qtin"))
-                    ->whereBetween('created', [date('Y-m-d', strtotime('-6 days')), date('Y-m-d', strtotime('+1 days'))])
+                    ->whereBetween('created_at', [date('Y-m-d', strtotime('-6 days')), date('Y-m-d', strtotime('+1 days'))])
                     ->groupBy('created')->orderBy('created', 'asc')->pluck('qtin'),
                 'qty_out' => Transaction::select(DB::raw("DATE(created_at) as created , SUM(IF( TYPE = 'out', qty, 0)) AS qtout"))
-                    ->whereBetween('created', [date('Y-m-d', strtotime('-6 days')), date('Y-m-d', strtotime('+1 days'))])
+                    ->whereBetween('created_at', [date('Y-m-d', strtotime('-6 days')), date('Y-m-d', strtotime('+1 days'))])
                     ->groupBy('created')->orderBy('created', 'asc')->pluck('qtout'),
             ],
             'Platform' => [
