@@ -20,9 +20,17 @@ class DashboardController extends Controller
             'total' => Transaction::where("type", 'in')->pluck('qty')->sum() - Transaction::where("type", 'out')->pluck('qty')->sum(),
             'inTrans' => Transaction::where("type", 'in')->pluck('qty')->sum(),
             'outTrans' => Transaction::where("type", 'out')->pluck('qty')->sum(),
-            'Transaction' => Transaction::select(DB::raw("DATE(created_at) as created , SUM(IF( TYPE = 'in', qty, 0)) AS qtin , SUM(IF( TYPE = 'out', qty, 0)) AS qtout"))
-                ->whereBetween('created', [date('Y-m-d', strtotime('-6 days')), date('Y-m-d', strtotime('+1 days'))])
-                ->groupBy('created')->orderBy('created', 'asc')->pluck('created'),
+            'Transaction' => [
+                'created' => Transaction::select(DB::raw("DATE(created_at) as created"))
+                    ->whereBetween('created_at', [date('Y-m-d', strtotime('-6 days')), date('Y-m-d', strtotime('+1 days'))])
+                    ->groupBy('created_at')->orderBy('created_at', 'asc')->pluck('created'),
+                'qty_in' => Transaction::select(DB::raw("DATE(created_at) as created , SUM(IF( TYPE = 'in', qty, 0)) AS qtin"))
+                    ->whereBetween('created_at', [date('Y-m-d', strtotime('-6 days')), date('Y-m-d', strtotime('+1 days'))])
+                    ->groupBy('created_at')->orderBy('created_at', 'asc')->pluck('qtin'),
+                'qty_out' => Transaction::select(DB::raw("DATE(created_at) as created , SUM(IF( TYPE = 'out', qty, 0)) AS qtout"))
+                    ->whereBetween('created_at', [date('Y-m-d', strtotime('-6 days')), date('Y-m-d', strtotime('+1 days'))])
+                    ->groupBy('created_at')->orderBy('created_at', 'asc')->pluck('qtout'),
+            ],
             'Platform' => [
                 'label' => Transaction::select(DB::raw('platform , sum(qty)'))
                     ->where('type', 'out')
