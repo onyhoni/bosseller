@@ -22,7 +22,7 @@ class DashboardController extends Controller
             'outTrans' => Transaction::where("type", 'out')->pluck('qty')->sum(),
             'Transaction' => [
                 'created' => Transaction::select(DB::raw("created_at, DATE_FORMAT(created_at, '%d %M') as created"))
-                    ->whereBetween('created_at', [date('Y-m-d', strtotime('-6 days')), date('Y-m-d', strtotime('+1 da   ys'))])
+                    ->whereBetween('created_at', [date('Y-m-d', strtotime('-6 days')), date('Y-m-d', strtotime('+1 days'))])
                     ->groupBy('created_at')->orderBy('created_at', 'asc')->pluck('created'),
                 'qty_in' => Transaction::select(DB::raw("created_at , DATE_FORMAT(created_at, '%d %M') as created  , SUM(IF( TYPE = 'in', qty, 0)) AS qtin"))
                     ->whereBetween('created_at', [date('Y-m-d', strtotime('-6 days')), date('Y-m-d', strtotime('+1 days'))])
