@@ -24,9 +24,9 @@ class ProfileController extends Controller
             $user = new User;
         }
 
-        $users = $user->paginate()->withQueryString();
+        $users = $user->paginate(7)->withQueryString();
         $values = User::select('username', 'name', 'email')->get();
-        return view('profile.index', compact('users', 'values'));
+        return view('profile.index', compact('users', 'values'))->with('i', ($request->input('page', 1) - 1) * 7);
     }
     /**
      * Display the user's profile form.

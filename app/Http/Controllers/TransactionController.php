@@ -25,8 +25,8 @@ class TransactionController extends Controller
         } else {
             $transaction = new Transaction;
         }
-        $transactions = $transaction->latest()->paginate()->withQueryString();
-        return view('transaction.index', compact('transactions'));
+        $transactions = $transaction->latest()->paginate(7)->withQueryString();
+        return view('transaction.index', compact('transactions'))->with('i', ($request->input('page', 1) - 1) * 7);
     }
 
     public function show(Transaction $transaction)

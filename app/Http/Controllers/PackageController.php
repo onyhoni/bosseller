@@ -23,7 +23,7 @@ class PackageController extends Controller
         }
         $packages = $package->paginate(7)->withQueryString();
         $values = Packages::select('slug', 'name', 'size')->get();
-        return view('packages.index', compact('packages', 'values'));
+        return view('packages.index', compact('packages', 'values'))->with('i', ($request->input('page', 1) - 1) * 7);
     }
 
     public function create()

@@ -72,7 +72,7 @@
 
 
             <div class="px-4">
-                <div class="relative overflow-x-auto">
+                <div class="relative overflow-x-auto pb-5">
                     <table class="w-full text-left text-sm text-gray-500 dark:text-gray-400 mb-10">
                         <thead class="bg-gray-50 text-xs text-gray-700 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
@@ -89,7 +89,7 @@
                             @foreach ($users as $user)
                                 <tr class="border-b bg-white dark:border-gray-700 dark:bg-gray-800">
                                     <td class="px-6 py-4">
-                                        {{ $users->count() * ($users->currentPage() - 1) + $loop->iteration }}
+                                        {{ ++$i }}
                                     </td>
                                     <td class="px-6 py-4">{{ $user->name }}</td>
                                     <td class="px-6 py-4">{{ $user->email }}</td>
