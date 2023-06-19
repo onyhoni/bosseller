@@ -25,7 +25,7 @@
                 </div>
 
                 <div class="col-span-2">
-                    <input type="date" id="startDate" name="startTime" value="{{ date('Y-m-d', strtotime('-7 days')) }}"
+                    <input type="date" id="startDate" name="startTime" value="{{ date('Y-m-d', strtotime('-30 days')) }}"
                         class="border-blues focus:border-blues focus:ring-blues text-abu block w-full rounded-lg border p-2.5
                         text-sm outline-blue-400" />
                 </div>

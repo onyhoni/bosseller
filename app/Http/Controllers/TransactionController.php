@@ -15,15 +15,16 @@ class TransactionController extends Controller
 {
     public function index(Request $request)
     {
-
         if ($request->platform) {
             $transaction = Transaction::where('platform', $request->platform)
-                ->whereBetween('created_at', [$request->startTime, date('Y-m-d', strtotime('+1 days')), $request->endTime]);
+                ->whereBetween('created_at', [$request->startTime, date('Y-m-d', strtotime('+1 days', strtotime($request->endTime)))]);
         } elseif ($request->type) {
             $transaction = Transaction::where('type', $request->type)
-                ->whereBetween('created_at', [$request->startTime, date('Y-m-d', strtotime('+1 days')), $request->endTime]);
+                ->whereBetween('created_at', [$request->startTime, date('Y-m-d', strtotime('+1 days', strtotime($request->endTime)))]);
+        } elseif ($request->startTime || $request->endTime) {
+            $transaction = Transaction::whereBetween('created_at', [$request->startTime, date('Y-m-d', strtotime('+1 days', strtotime($request->endTime)))]);
         } else {
-            $transaction = new Transaction;
+            $transaction = Transaction::whereBetween('created_at', [date('Y-m-d', strtotime('-30 days')), date('Y-m-d', strtotime('+1 days'))]);
         }
         $transactions = $transaction->latest()->paginate(7)->withQueryString();
         return view('transaction.index', compact('transactions'))->with('i', ($request->input('page', 1) - 1) * 7);
