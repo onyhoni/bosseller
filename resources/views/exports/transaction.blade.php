@@ -17,7 +17,7 @@
     <tbody>
         @foreach ($transactions as $transaction)
             <tr>
-                <td>{{ $transaction->invoice }}</td>
+                <td>'{{ $transaction->invoice }}</td>
                 <td>{{ $transaction->type }}</td>
                 <td>{{ $transaction->package->account }}</td>
                 <td>{{ $transaction->platform }}</td>
