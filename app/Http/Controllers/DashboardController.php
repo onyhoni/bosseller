@@ -42,10 +42,8 @@ class DashboardController extends Controller
                     ->groupBy('platform')->pluck('qty'),
             ],
             'Top5' =>   Packages::select('name', 'stock')
-                ->whereBetween('created_at', [date('Y-m-d', strtotime('-6 days')), date('Y-m-d', strtotime('+1 days'))])
                 ->orderBy('stock', 'desc')->limit(5)->get(),
             'Down5' => Packages::select('name', 'stock')
-                ->whereBetween('created_at', [date('Y-m-d', strtotime('-6 days')), date('Y-m-d', strtotime('+1 days'))])
                 ->orderBy('stock', 'asc')->limit(5)->get(),
             'Stock' => Transaction::select(DB::raw("package_id ,
                         SUM(IF( TYPE = 'in', qty, 0)) AS qtin ,

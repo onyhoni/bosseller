@@ -14,10 +14,10 @@ class PackageController extends Controller
     {
         if ($request->name) {
             $package = Packages::where('slug', $request->name)
-                ->whereBetween('created_at', [$request->startTime, date('Y-m-d', strtotime('+1 days')), $request->endTime]);
+                ->whereBetween('created_at', [$request->startTime, date('Y-m-d', strtotime('+1 days', strtotime($request->endTime)))]);
         } elseif ($request->size) {
             $package = Packages::where('size', $request->size)
-                ->whereBetween('created_at', [$request->startTime, date('Y-m-d', strtotime('+1 days')), $request->endTime]);
+                ->whereBetween('created_at', [$request->startTime, date('Y-m-d', strtotime('+1 days', strtotime($request->endTime)))]);
         } else {
             $package = new Packages;
         }
