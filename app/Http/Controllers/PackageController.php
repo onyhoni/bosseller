@@ -13,11 +13,11 @@ class PackageController extends Controller
     public function index(Request $request)
     {
         if ($request->name) {
-            $package = Packages::where('slug', $request->name)
-                ->whereBetween('created_at', [$request->startTime, date('Y-m-d', strtotime('+1 days', strtotime($request->endTime)))]);
+            $package = Packages::where('slug', $request->name);
         } elseif ($request->size) {
-            $package = Packages::where('size', $request->size)
-                ->whereBetween('created_at', [$request->startTime, date('Y-m-d', strtotime('+1 days', strtotime($request->endTime)))]);
+            $package = Packages::where('size', $request->size);
+        } elseif ($request->startTime || $request->endTime) {
+            $package = Packages::whereBetween('created_at', [$request->startTime, date('Y-m-d', strtotime('+1 days', strtotime($request->endTime)))]);
         } else {
             $package = new Packages;
         }

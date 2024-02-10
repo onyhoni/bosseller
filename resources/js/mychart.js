@@ -1,7 +1,7 @@
 import Chart from "chart.js/auto";
 
 $.ajax({
-    url: "https://bosseller.online/show",
+    url: "http://bosseller.test/show",
     method: "GET",
     success: (data) => {
         $("#product").html(data.total.toLocaleString("de-DE"));
